@@ -86,34 +86,34 @@ fun AmphibianCard(amphibian: Amphibian, modifier: Modifier = Modifier) {
             .background(MaterialTheme.colorScheme.surfaceVariant)
     ) {
         //Row {
-            Text(
-                text = "${amphibian.name} (${amphibian.type})",
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(16.dp)
-            )
-       // }
+        Text(
+            text = "${amphibian.name} (${amphibian.type})",
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(16.dp)
+        )
+        // }
         //Row {
-            AsyncImage(
-                model = ImageRequest.Builder(context = LocalContext.current).data(amphibian.imgSrc)
-                    .build(),
-                error = painterResource(R.drawable.ic_broken_image),
-                placeholder = painterResource(R.drawable.loading_img),
-                contentDescription = stringResource(R.string.amphibian_desc),
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1.5f)
-            )
-       // }
-       // Row {
-            Text(
-                text = "${amphibian.description}",
-                modifier = Modifier.padding(12.dp),
-                style = MaterialTheme.typography.bodyLarge,
-            )
-        }
-   // }
+        AsyncImage(
+            model = ImageRequest.Builder(context = LocalContext.current).data(amphibian.imgSrc)
+                .build(),
+            error = painterResource(R.drawable.ic_broken_image),
+            placeholder = painterResource(R.drawable.loading_img),
+            contentDescription = stringResource(R.string.amphibian_desc),
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1.5f)
+        )
+        // }
+        // Row {
+        Text(
+            text = "${amphibian.description}",
+            modifier = Modifier.padding(12.dp),
+            style = MaterialTheme.typography.bodyLarge,
+        )
+    }
+    // }
 }
 
 @Composable
@@ -155,5 +155,16 @@ fun LoadingScreenPreview() {
 fun ErrorScreenPreview() {
     AmphibiansTheme {
         ErrorScreen({})
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AmphibiansGridScreenPreview() {
+    AmphibiansTheme {
+        val mockData = List(10) {
+            Amphibian("$it", "amph1", description = "amph1", imgSrc = "")
+        }
+        AmphibiansGridScreen(mockData, Modifier.fillMaxSize())
     }
 }
